@@ -1,7 +1,36 @@
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 
-const userSchema = mongoose.Schema({
-
+const orderItemSchema = new mongoose.Schema({
+    productId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref:"Products"
+    },
+    quantity:{
+        type:Number,
+        required : true
+    }
 })
 
-export const User = mongoose.model('User', userSchema);
+
+const orderSchema = mongoose.Schema({
+    orderPrice:{
+        type : Number,
+        required : true
+    },
+    customer : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User"
+    },
+    orderItems : {
+        type : [orderItemSchema]
+    },
+    address:{
+        type:String,
+        required : true
+    },
+    status :{
+        type :String,
+    }
+}, {timestamps : true})
+
+export const Order = mongoose.model('Order', orderSchema);
