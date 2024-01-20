@@ -14,10 +14,10 @@ const todoSchema = new mongoose.Schema({
         ref : "User"
     },
     subTodos:[
-       { 
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "SubTodo"
-        }
+    { 
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "SubTodo"
+    }
     ]
 } , {timestamps : true});
 
